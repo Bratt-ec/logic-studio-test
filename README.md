@@ -65,12 +65,8 @@ example post survey
     "email": "usuario.prueba@email.com",
     "ageRange": "26-35",
     "genderIdentity": "Mujer",
-    "educationLevel": "Máster / Postgrado",
-    "workModality": "Híbrido",
-    "yearsExperienceTotal": 8,
-    "yearsExperienceCurrent": 3,
+    "fullName": "Usuario prueba",
     "teamRole": "Project Manager",
-    "country": "España"
   },
   "answers": [
     {
