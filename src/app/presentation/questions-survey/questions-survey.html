@@ -1,1 +1,98 @@
-<p>questions-survey works!</p>
+<div class="stepper-container">
+
+  @if (surveyData.length) {
+    <mat-stepper [linear]="true" #stepper orientation="horizontal">
+      
+      @for (section of surveyData; track $index) {
+          <mat-step 
+            [stepControl]="getSectionGroup($index)"
+            [label]="section.section">
+            
+            <form [formGroup]="getSectionGroup($index)" class="section-form">
+              <div class="section-header">
+                <h3>{{ section.section }}</h3>
+                <p class="subtitle">Por favor, responde todas las preguntas para continuar.</p>
+              </div>
+              @for (q of section.questions; track q) {
+                  <div class="question-block">
+                    
+                    <label class="question-text">
+                      <span class="q-id">{{ q.id }}.</span> {{ q.text }}
+                    </label>
+          
+                    @if (q.max > 0) {
+                        <ng-container >
+                          <mat-button-toggle-group 
+                            [formControlName]="'q_' + q.id" 
+                            class="rating-group">
+                            @for (val of getRange(q.min, q.max); track $index) {
+                              <mat-button-toggle 
+                                [value]="val"
+                                class="rating-btn">
+                                {{ val }}
+                              </mat-button-toggle>
+                            }
+                          </mat-button-toggle-group>
+                          
+                          <div class="scale-labels">
+                            <small>Desacuerdo</small>
+                            <small>De Acuerdo</small>
+                          </div>
+                        </ng-container>
+                    }
+  
+                    @if (q.max === 0) {
+                        <ng-container>
+                          <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Su respuesta</mat-label>
+                            <textarea 
+                              matInput 
+                              rows="4" 
+                              [formControlName]="'q_' + q.id"
+                              placeholder="Escriba aqui...">
+                            </textarea>
+                            <mat-error>Este campo es requerido</mat-error>
+                          </mat-form-field>
+                        </ng-container>
+                    }
+          
+                  </div>
+              }
+      
+      
+              <div class="stepper-actions">
+                  @if ($index > 0) {
+                      <button mat-stroked-button matStepperPrevious>Anterior</button>
+                  }
+  
+                  @if ($index < surveyData.length - 1) {
+  
+                      <button 
+                        mat-flat-button 
+                        color="primary" 
+                        matStepperNext 
+                        type="button"
+                      >
+                        Siguiente
+                      </button>
+                  }
+                
+      
+                  @if ($index === surveyData.length - 1) {
+                      <button 
+                        mat-flat-button 
+                        color="primary" 
+                        (click)="onSubmit()"
+                      >
+                        Enviar encuesta
+                      </button>
+                  }
+              </div>
+      
+            </form>
+          </mat-step>
+      }
+  
+    </mat-stepper>
+  }
+</div>
