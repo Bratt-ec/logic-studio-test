@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { SurveySection } from '../../infrastructure/models/survey.model';
 import { SurveyService } from '../../infrastructure/services/survey.service';
+import { Router } from '@angular/router';
+import { AppRoutes } from '../../core/routes/app-routes';
 
 @Component({
   selector: 'app-questions-survey',
@@ -36,12 +38,11 @@ import { SurveyService } from '../../infrastructure/services/survey.service';
 export class QuestionsSurvey {
 
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   private cdRef = inject(ChangeDetectorRef);
   private _survey = inject(SurveyService);
 
-  @Input() surveyData: SurveySection[] = [];
-
-  // Main form that holds all sections
+  surveyData: SurveySection[] = [];
   surveyForm: FormGroup = this.fb.group({});
 
   constructor() {
@@ -92,9 +93,10 @@ export class QuestionsSurvey {
   async onSubmit() {
     if (this.surveyForm.valid) {
       const response = await this._survey.send(this.surveyForm.value)
-      if(response){
+      if (response) {
         this._survey.setRespondent(null)
         this.surveyForm.reset()
+        this.router.navigate([AppRoutes.welcome])
       }
     }
   }

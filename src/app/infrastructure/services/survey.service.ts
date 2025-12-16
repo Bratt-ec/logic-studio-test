@@ -58,6 +58,11 @@ export class SurveyService {
 
       if (!response.success) return null
 
+      this._ui.dialog({
+        title: 'Información',
+        message: 'Tu encuesta ha sido enviada correctamente, gracias por tu tiempo.',
+      })
+
       return response
     } catch (error) {
       return null
