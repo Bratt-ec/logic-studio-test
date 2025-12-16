@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppRoutes } from './core/routes/app-routes';
+import { surveyGuard } from './core/guards/survey-guard';
 
 export const routes: Routes = [
     {
@@ -12,6 +13,7 @@ export const routes: Routes = [
     },
     {
         path: AppRoutes.questions,
-        loadComponent: () => import('./presentation/questions-survey/questions-survey').then((m) => m.QuestionsSurvey)
+        loadComponent: () => import('./presentation/questions-survey/questions-survey').then((m) => m.QuestionsSurvey),
+        canActivate: [surveyGuard]
     }
 ];

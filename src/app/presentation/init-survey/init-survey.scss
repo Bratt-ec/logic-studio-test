@@ -1,0 +1,49 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 500px;
+
+    // Clean spacing inside the card
+    mat-card-content {
+        margin-top: 16px;
+    }
+}
+
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; // Spacing between fields
+}
+
+// Layout for the Age/Gender row
+.row-fields {
+    display: flex;
+    gap: 16px;
+
+    .half-width {
+        flex: 1;
+    }
+}
+
+// Adjustments for mobile
+@media (max-width: 600px) {
+    .row-fields {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-card-actions {
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 4px 16px 16px;
+}
