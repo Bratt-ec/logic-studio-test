@@ -1,0 +1,31 @@
+<section class="page-container">
+  <mat-card class="welcome-card">
+    <mat-card-header class="custom-header">
+      <div mat-card-avatar class="header-icon">
+        <mat-icon>assignment</mat-icon>
+      </div>
+      <mat-card-title>Bienvenido</mat-card-title>
+      <mat-card-subtitle>Valoramos tu opinion</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="intro-text">
+        Bienvenido! Gracias por tomarse el tiempo de ayudarnos a completar esta encuesta. 
+        Este cuestionario consiste en preguntas cortas y deberia tomar menos de 3 minutos para completar.
+      </p>
+      
+      <div class="info-points">
+        <div class="point">
+          <mat-icon color="primary">timer</mat-icon>
+          <span>~2 Minutos</span>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="startSurvey()">
+        INICIAR ENCUESTA
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>
